@@ -3,6 +3,7 @@ from __future__ import print_function
 import random
 
 import numpy as np
+import os
 from sklearn.cross_validation import train_test_split
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
@@ -144,6 +145,9 @@ class Model(object):
 
     def save(self, file_path=FILE_PATH):
         print('Model Saved.')
+        save_dir = os.path.dirname(file_path)
+        if not os.path.exists(save_dir):
+            os.mkdir(save_dir)
         self.model.save(file_path)
 
     def load(self, file_path=FILE_PATH):
